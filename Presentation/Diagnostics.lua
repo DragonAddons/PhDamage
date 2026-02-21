@@ -264,9 +264,9 @@ function Diagnostics.PrintSpell(spellName)
 end
 
 -------------------------------------------------------------------------------
--- PrintSpellDirect — detailed direct damage spell
+-- PrintSpellDot — detailed DoT spell
 -------------------------------------------------------------------------------
-function Diagnostics.PrintSpellDirect(r, FN, FP, schoolColor, schoolName)
+function Diagnostics.PrintSpellDot(r, FN, FP, schoolColor, schoolName)
     if r.baseDamage then
         Diagnostics.Print("  " .. LabelValue("Base damage",
             FN(r.baseDamage.min) .. " - " .. FN(r.baseDamage.max)
@@ -285,6 +285,37 @@ function Diagnostics.PrintSpellDirect(r, FN, FP, schoolColor, schoolName)
         FN(r.duration) .. "s (" .. (r.numTicks or "?") .. " ticks)"))
     Diagnostics.Print("  " .. LabelValue("Per tick", FN(r.tickDamage)))
     Diagnostics.Print("  " .. LabelValue("Expected total", COLOR_VALUE .. FN(r.expectedDamage) .. COLOR_RESET))
+    Diagnostics.Print("  " .. LabelValue("Hit chance", FP(r.hitChance)))
+    Diagnostics.Print("  " .. LabelValue("Expected with miss",
+        schoolColor .. FN(r.expectedDamageWithMiss) .. COLOR_RESET))
+    local castStr = (r.castTime and r.castTime > 0) and (FN(r.castTime) .. "s") or "instant"
+    Diagnostics.Print("  " .. LabelValue("Cast time", castStr))
+    Diagnostics.Print("  " .. LabelValue("DPS", COLOR_GOOD .. FN(r.dps) .. COLOR_RESET))
+end
+
+-------------------------------------------------------------------------------
+-- PrintSpellDirect — detailed direct damage spell
+-------------------------------------------------------------------------------
+function Diagnostics.PrintSpellDirect(r, FN, FP, schoolColor, schoolName)
+    if r.baseDamage then
+        Diagnostics.Print("  " .. LabelValue("Base damage",
+            FN(r.baseDamage.min) .. " - " .. FN(r.baseDamage.max)
+            .. " (avg " .. FN(r.avgBaseDamage) .. ")"))
+    else
+        Diagnostics.Print("  " .. LabelValue("Base damage", FN(r.avgBaseDamage)))
+    end
+    Diagnostics.Print("  " .. LabelValue("SP coefficient", string.format("%.4f", r.coefficient or 0)))
+    Diagnostics.Print("  " .. LabelValue("Spell power",
+        schoolColor .. FN(r.spellPowerBonus / SafeCoefficient(r.coefficient)) .. " " .. schoolName .. COLOR_RESET))
+    Diagnostics.Print("  " .. LabelValue("SP contribution",
+        COLOR_GOOD .. "+" .. FN(r.spellPowerBonus) .. COLOR_RESET))
+    Diagnostics.Print("  " .. LabelValue("Damage before mods", FN(r.damageBeforeMods)))
+    Diagnostics.Print("  " .. LabelValue("Damage after mods", FN(r.damageAfterMods)))
+    Diagnostics.Print("  " .. LabelValue("Crit chance",
+        r.critChance > 0
+            and (FP(r.critChance) .. " (\195\151" .. string.format("%.2f", r.critMultiplier) .. " multiplier)")
+            or "n/a"))
+    Diagnostics.Print("  " .. LabelValue("Expected damage", COLOR_VALUE .. FN(r.expectedDamage) .. COLOR_RESET))
     Diagnostics.Print("  " .. LabelValue("Hit chance", FP(r.hitChance)))
     Diagnostics.Print("  " .. LabelValue("Expected with miss",
         schoolColor .. FN(r.expectedDamageWithMiss) .. COLOR_RESET))

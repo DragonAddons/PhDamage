@@ -80,18 +80,6 @@ TalentMap["1:17"] = {
     },
 }
 
--- Malediction: +1% spell damage taken by targets affected by Curse of the Elements per rank.
--- Modeled as a target debuff multiplier applied through Curse of the Elements; the actual
--- debuff interaction is handled in AuraMap. This entry records the talent-based bonus.
-TalentMap["1:19"] = {
-    name = "Malediction",
-    maxRank = 3,
-    effects = {
-        { type = MOD.DAMAGE_MULTIPLIER, value = 0.01, perRank = true,
-          filter = { spellNames = {"Curse of the Elements"} } },
-    },
-}
-
 -- Unstable Affliction (1:21): 1 rank, enables the spell. No damage modifier.
 
 -------------------------------------------------------------------------------

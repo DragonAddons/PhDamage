@@ -18,7 +18,6 @@ ns.SpellData = {}      -- populated by Data/SpellData_Warlock.lua
 ns.TalentMap = {}      -- populated by Data/TalentMap_Warlock.lua
 ns.AuraMap = {}        -- populated by Data/AuraMap_Warlock.lua
 ns.Engine = {}         -- populated by Engine/*.lua
-ns.State = {}          -- populated by Core/StateCollector.lua (current snapshot)
 
 -------------------------------------------------------------------------------
 -- Saved Variables Defaults

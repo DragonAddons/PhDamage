@@ -224,6 +224,26 @@ function ModifierCalc.ApplyModifiers(baseResult, spellData, playerState, talentM
                         ApplyEffect(mods, effect, 1)
                     end
                 end
+
+                -- talentAmplify: talent that adds extra value to this aura's effect
+                if entry.talentAmplify then
+                    local amp = entry.talentAmplify
+                    local talentRank = playerState.talents[amp.talentKey] or 0
+                    if talentRank > 0 then
+                        -- Create a synthetic effect matching the aura's first matching filter
+                        for _, effect in ipairs(entry.effects) do
+                            if effect.type == amp.effectType
+                                    and ModifierCalc.MatchesFilter(effect.filter, spellData) then
+                                local syntheticEffect = {
+                                    type = amp.effectType,
+                                    value = amp.perRank * talentRank,
+                                }
+                                ApplyEffect(mods, syntheticEffect, 1)
+                                break  -- Only amplify once per aura
+                            end
+                        end
+                    end
+                end
             end
         end
     end

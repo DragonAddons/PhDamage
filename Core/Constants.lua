@@ -40,16 +40,6 @@ ns.SCHOOL_NAMES = {
 }
 
 -------------------------------------------------------------------------------
--- Combat Rating Conversions (Level 70 TBC values)
--- Points of rating needed for 1% of the stat
--------------------------------------------------------------------------------
-ns.RATING_CONVERSIONS = {
-    spellHit  = 12.62,   -- spell hit rating per 1%
-    spellCrit = 22.08,   -- spell crit rating per 1%
-    spellHaste = 15.77,  -- spell haste rating per 1%
-}
-
--------------------------------------------------------------------------------
 -- Base Crit Multiplier
 -- Spells deal 150% damage on crit by default (1.5x multiplier)
 -------------------------------------------------------------------------------
@@ -67,7 +57,12 @@ ns.MAX_SPELL_HIT = 0.99          -- cap (1% resist always remains)
 -- GCD and Cast Time
 -------------------------------------------------------------------------------
 ns.GLOBAL_COOLDOWN = 1.5
-ns.MIN_CAST_TIME = 1.0            -- haste can't reduce below this (TBC)
+
+-------------------------------------------------------------------------------
+-- Combat Rating IDs (for GetCombatRatingBonus)
+-------------------------------------------------------------------------------
+ns.CR_HIT_SPELL   = 8
+ns.CR_HASTE_SPELL = 20
 
 -------------------------------------------------------------------------------
 -- Modifier Effect Types (used by TalentMap and AuraMap descriptors)
@@ -88,6 +83,8 @@ ns.MOD = {
 
 -------------------------------------------------------------------------------
 -- Spell Types (for filtering in modifiers)
+-- NOTE: Not yet referenced by SpellData; kept for future use when spell data
+-- migrates from raw strings to typed constants.
 -------------------------------------------------------------------------------
 ns.SPELL_TYPE = {
     DIRECT    = "direct",

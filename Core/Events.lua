@@ -16,7 +16,7 @@ local STATE_EVENTS = {
     "UNIT_AURA",
     "CHARACTER_POINTS_CHANGED",
     "PLAYER_DAMAGE_DONE_MODS",
-    "SPELL_POWER_CHANGED",
+    "SPELL_POWER_CHANGED",          -- May not exist in TBC 2.5.5; registered via pcall
     "UNIT_STATS",
     "PLAYER_TALENT_UPDATE",
     "ACTIVE_TALENT_GROUP_CHANGED",

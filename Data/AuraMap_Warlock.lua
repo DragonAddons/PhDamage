@@ -120,6 +120,11 @@ AuraMap[11722] = {
           filter = { schools = {SCHOOL_FIRE, SCHOOL_SHADOW, SCHOOL_ARCANE,
                                 SCHOOL_FROST, SCHOOL_NATURE} } },
     },
+    talentAmplify = {
+        talentKey = "1:19",
+        perRank = 0.01,
+        effectType = MOD.DAMAGE_MULTIPLIER,
+    },
 }
 
 -- Curse of the Elements Rank 4 (max in TBC): +10% Fire/Frost/Arcane/Nature/Shadow damage,
@@ -132,6 +137,11 @@ AuraMap[27228] = {
           filter = { schools = {SCHOOL_FIRE, SCHOOL_SHADOW, SCHOOL_ARCANE,
                                 SCHOOL_FROST, SCHOOL_NATURE} } },
     },
+    talentAmplify = {
+        talentKey = "1:19",
+        perRank = 0.01,
+        effectType = MOD.DAMAGE_MULTIPLIER,
+    },
 }
 
 -- Curse of Shadow Rank 1: +8% Shadow and Arcane damage, -75 resistances
@@ -142,6 +152,11 @@ AuraMap[17937] = {
         { type = MOD.DAMAGE_MULTIPLIER, value = 0.08,
           filter = { schools = {SCHOOL_SHADOW, SCHOOL_ARCANE} } },
     },
+    talentAmplify = {
+        talentKey = "1:19",
+        perRank = 0.01,
+        effectType = MOD.DAMAGE_MULTIPLIER,
+    },
 }
 
 -- Curse of Shadow Rank 2: +10% Shadow and Arcane damage, -88 resistances
@@ -151,6 +166,11 @@ AuraMap[32862] = {
     effects = {
         { type = MOD.DAMAGE_MULTIPLIER, value = 0.10,
           filter = { schools = {SCHOOL_SHADOW, SCHOOL_ARCANE} } },
+    },
+    talentAmplify = {
+        talentKey = "1:19",
+        perRank = 0.01,
+        effectType = MOD.DAMAGE_MULTIPLIER,
     },
 }
 

@@ -81,8 +81,8 @@ function StateCollector.CollectPlayerState()
         end
     end
 
-    -- Spell hit from rating (CR_HIT_SPELL = 8 in TBC)
-    ok, result = pcall(GetCombatRatingBonus, 8)
+    -- Spell hit from rating (CR_HIT_SPELL)
+    ok, result = pcall(GetCombatRatingBonus, ns.CR_HIT_SPELL)
     if ok and result then
         state.stats.spellHit = result / 100
     end
@@ -101,8 +101,8 @@ function StateCollector.CollectPlayerState()
         end
     end
 
-    -- Spell haste from rating (CR_HASTE_SPELL = 20 in TBC)
-    ok, result = pcall(GetCombatRatingBonus, 20)
+    -- Spell haste from rating (CR_HASTE_SPELL)
+    ok, result = pcall(GetCombatRatingBonus, ns.CR_HASTE_SPELL)
     if ok and result then
         state.stats.spellHaste = result / 100
     end
@@ -172,10 +172,10 @@ function StateCollector.CollectAuras(state)
         end
     end
 
-    scanUnit("player", "HELPFUL", "player")
+    -- Scan target debuffs via C_UnitAuras
     scanUnit("target", "HARMFUL", "target")
 
-    -- Also check player buffs via C_UnitAuras if GetPlayerAuraBySpellID was not available
+    -- Scan player buffs via C_UnitAuras if GetPlayerAuraBySpellID was not available
     if not GetPlayerAuraBySpellID then
         scanUnit("player", "HELPFUL", "player")
     end

@@ -168,7 +168,6 @@ SpellData[172] = {
     school = SCHOOL_SHADOW,
     coefficient = 0.936,
     castTime = 0,
-    baseCastTime = 2.0,
     canCrit = false,
     isDot = true,
     isChanneled = false,

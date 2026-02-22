@@ -499,17 +499,20 @@ initFrame:SetScript("OnEvent", function(self, event)
         companionFrame:SetClampedToScreen(true)
         companionFrame:Hide()
 
+        companionFrame:SetBackdrop({
+            bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            tile = true, tileSize = 16, edgeSize = 16,
+            insets = { left = 4, right = 4, top = 4, bottom = 4 },
+        })
+        companionFrame:SetBackdropColor(0, 0, 0, 0.8)
+
+        -- Apply ElvUI skin if available (SetTemplate is a mixin method)
         if ElvUI then
             local E = unpack(ElvUI)
-            E:SetTemplate(companionFrame, "Transparent")
-        else
-            companionFrame:SetBackdrop({
-                bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
-                edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                tile = true, tileSize = 16, edgeSize = 16,
-                insets = { left = 4, right = 4, top = 4, bottom = 4 },
-            })
-            companionFrame:SetBackdropColor(0, 0, 0, 0.8)
+            if E and E.Skins then
+                pcall(function() companionFrame:SetTemplate("Transparent") end)
+            end
         end
 
         HookTooltip()

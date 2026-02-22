@@ -1,38 +1,50 @@
 # PhDamage
 
-[![Luacheck](https://github.com/Xerrion/PhDamage/actions/workflows/lint.yml/badge.svg)](https://github.com/Xerrion/PhDamage/actions/workflows/lint.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![WoW Version](https://img.shields.io/badge/WoW-TBC%20Anniversary%202.5.5-blue)](https://worldofwarcraft.blizzard.com)
+[![GitHub Release](https://img.shields.io/github/v/release/Xerrion/PhDamage?style=flat-square)](https://github.com/Xerrion/PhDamage/releases)
+[![Luacheck](https://img.shields.io/github/actions/workflow/status/Xerrion/PhDamage/lint.yml?label=luacheck&style=flat-square)](https://github.com/Xerrion/PhDamage/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-Expected damage and healing calculator for World of Warcraft TBC Anniversary (2.5.5). PhDamage computes and displays expected damage/healing values on action bar buttons and spell tooltips based on your current talents, gear, buffs, and debuffs.
+Expected damage and healing calculator for World of Warcraft — TBC Anniversary.
+
+## Overview
+
+PhDamage computes and displays expected damage and healing values on spell tooltips and action bar buttons. Calculations are based on your current talents, gear, buffs, and debuffs — updated in real time as your character state changes.
 
 ## Features
 
-- **9 classes fully supported**: Warlock, Hunter, Mage, Priest, Warrior, Rogue, Druid, Shaman, Paladin
-- **Real-time calculations** based on current player state (talents, gear, buffs)
-- **Tooltip integration** with school-colored damage/healing values
-- **Action bar overlays** showing expected damage on spell buttons
-- **1100+ unit tests** ensuring calculation accuracy
+- **All 9 classes supported** — Warlock, Hunter, Mage, Priest, Warrior, Rogue, Druid, Shaman, Paladin
+- **Real-time calculations** — Automatically updates when talents, gear, or buffs change
+- **Tooltip integration** — School-colored damage/healing values displayed in spell tooltips
+- **Action bar overlays** — Expected damage shown directly on action bar buttons
+- **1100+ unit tests** — Comprehensive test coverage ensuring calculation accuracy
 
-## Supported Spell Types
+## Supported Versions
 
-- Direct damage and healing spells
-- Damage over Time (DoT) effects
-- Hybrid spells (direct + DoT components)
-- Channeled spells
-- Melee abilities (weapon damage, AP scaling)
-- Ranged abilities
+| Version | Interface |
+|---------|-----------|
+| TBC Anniversary | `20505` |
 
 ## Architecture
 
-PhDamage follows a strict 4-layer architecture:
+PhDamage follows a strict 4-layer architecture where the engine layer is pure Lua with no WoW API dependencies, making it fully testable outside the game.
 
 | Layer | Directory | Purpose |
 |-------|-----------|---------|
 | Shell | `Core/` | WoW API interaction, event handling, state collection |
-| Engine | `Engine/` | Pure Lua calculation pipeline (no WoW API dependencies) |
+| Engine | `Engine/` | Pure Lua calculation pipeline — no WoW API calls |
 | Data | `Data/` | Declarative spell, talent, and aura descriptor tables |
-| Presentation | `Presentation/` | Tooltip rendering, action bar overlays |
+| Presentation | `Presentation/` | Tooltip rendering and action bar overlays |
+
+## Supported Spell Types
+
+| Type | Examples |
+|------|----------|
+| Direct | Frostbolt, Shadow Bolt, Holy Light |
+| DoT | Corruption, Consecration, Moonfire (periodic) |
+| Hybrid | Immolate, Moonfire (direct + DoT) |
+| Channel | Drain Life, Mind Flay |
+| Melee | Sinister Strike, Heroic Strike, Mutilate |
+| Ranged | Auto Shot, Arcane Shot, Steady Shot |
 
 ## Installation
 
@@ -42,24 +54,25 @@ PhDamage follows a strict 4-layer architecture:
 
 ## Slash Commands
 
-- `/phd` — Show diagnostic information
-- `/phd help` — List available commands
+| Command | Description |
+|---------|-------------|
+| `/phd` | Show diagnostic information |
+| `/phd help` | List available commands |
 
 ## Dependencies
 
-- [Ace3](https://www.wowace.com/projects/ace3) (bundled via .pkgmeta)
+- [Ace3](https://www.wowace.com/projects/ace3) — bundled automatically via `.pkgmeta`
 
 ## Development
 
 ### Prerequisites
 
-- [Luacheck](https://github.com/mpeterv/luacheck) for linting
-- [Busted](https://olivinelabs.com/busted/) for testing
+- [Luacheck](https://github.com/mpeterv/luacheck) — static analysis
+- [Busted](https://olivinelabs.com/busted/) — unit testing framework
 
 ### Running Tests
 
 ```bash
-cd PhDamage
 busted --pattern="test_" tests/
 ```
 
@@ -71,4 +84,4 @@ luacheck .
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+[MIT](LICENSE)

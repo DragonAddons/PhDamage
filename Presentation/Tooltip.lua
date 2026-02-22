@@ -133,6 +133,51 @@ local function AddSeparator()
 end
 
 -------------------------------------------------------------------------------
+-- Scaling line builder
+-------------------------------------------------------------------------------
+
+local function AddScalingLine(r)
+    -- Skip for utility spells
+    if r.spellType == "utility" then return end
+
+    local parts = {}
+    local isMelee = r.dodgeChance ~= nil
+
+    -- Coefficient (skip for melee)
+    if not isMelee then
+        if r.spellType == "hybrid" and r.directSpBonus and r.dotSpBonus then
+            -- Show both direct and dot coefficients
+            local directCoeff = (r.spellPowerBonus or 0) > 0
+                and (r.directSpBonus / r.spellPowerBonus) or 0
+            local dotCoeff = (r.spellPowerBonus or 0) > 0
+                and (r.dotSpBonus / r.spellPowerBonus) or 0
+            parts[#parts + 1] = format("%.2f+%.2f coeff", directCoeff, dotCoeff)
+        elseif r.coefficient then
+            parts[#parts + 1] = format("%.3f coeff", r.coefficient)
+        end
+    end
+
+    -- Cast time (use baseCastTime to detect instants)
+    if (r.baseCastTime or 0) <= 0 then
+        parts[#parts + 1] = "instant"
+    elseif r.spellType == "channel" then
+        parts[#parts + 1] = format("%.1fs channel", r.castTime)
+    else
+        parts[#parts + 1] = format("%.1fs cast", r.castTime)
+    end
+
+    -- Talent damage bonus
+    if (r.talentDamageBonus or 0) > 0 then
+        parts[#parts + 1] = format("+%.0f%% talents", r.talentDamageBonus * 100)
+    end
+
+    if #parts > 0 then
+        GameTooltip:AddLine(
+            "  Scaling:  " .. concat(parts, "  |  "), 0.67, 0.67, 0.67)
+    end
+end
+
+-------------------------------------------------------------------------------
 -- Stats line builder
 -------------------------------------------------------------------------------
 
@@ -206,6 +251,7 @@ end
 --- Direct damage/heal spell (3 lines, or 4 for melee)
 local function AddDirectLines(r)
     AddHeaderLine(r)
+    AddScalingLine(r)
     if r.dodgeChance ~= nil then
         AddMeleeStatsLines(r)
     else
@@ -216,6 +262,7 @@ end
 --- DoT spell (4 lines)
 local function AddDotLines(r)
     AddHeaderLine(r)
+    AddScalingLine(r)
 
     -- Tick info line
     local sc = Tooltip.GetSchoolColor(r.school)
@@ -233,6 +280,7 @@ end
 --- Hybrid spell (5 lines)
 local function AddHybridLines(r)
     AddHeaderLine(r)
+    AddScalingLine(r)
 
     local sc = Tooltip.GetSchoolColor(r.school)
 
@@ -265,6 +313,7 @@ end
 --- Channel spell (4 lines)
 local function AddChannelLines(r)
     AddHeaderLine(r)
+    AddScalingLine(r)
 
     -- Tick info line
     local sc = Tooltip.GetSchoolColor(r.school)

@@ -153,18 +153,18 @@ function CritCalc.ApplyExpectedCrit(modifiedResult, spellData, playerState, modi
     if spellData.spellType == "hybrid" then
         finalResult = CritCalc.BuildHybridResult(
             modifiedResult, spellData, critChance, critMultiplier,
-            hitBonus, hitProbability, effectiveCastTime, playerState
+            hitBonus, hitProbability, effectiveCastTime, rawCastTime, playerState
         )
     elseif spellData.spellType == "direct" then
         finalResult = CritCalc.BuildDirectResult(
             modifiedResult, spellData, critChance, critMultiplier,
-            hitBonus, hitProbability, effectiveCastTime, playerState
+            hitBonus, hitProbability, effectiveCastTime, rawCastTime, playerState
         )
     else
         -- DoT / Channel
         finalResult = CritCalc.BuildPeriodicResult(
             modifiedResult, spellData, critChance, critMultiplier,
-            hitBonus, hitProbability, effectiveCastTime,
+            hitBonus, hitProbability, effectiveCastTime, rawCastTime,
             hastePercent, playerState
         )
     end
@@ -183,7 +183,7 @@ end
 -------------------------------------------------------------------------------
 function CritCalc.BuildDirectResult(
     modResult, spellData, critChance, critMultiplier,
-    hitBonus, hitProbability, effectiveCastTime, playerState)
+    hitBonus, hitProbability, effectiveCastTime, rawCastTime, playerState)
     local totalDmg = modResult.totalDamage
     local expectedDamage = totalDmg * (1 + critChance * (critMultiplier - 1))
     local expectedWithMiss = expectedDamage * hitProbability
@@ -220,6 +220,7 @@ function CritCalc.BuildDirectResult(
         expectedDamageWithMiss = expectedWithMiss,
         armorReduction = armorReduction,
         castTime = effectiveCastTime,
+        baseCastTime = rawCastTime,
         dps = dps,
         isDot = false,
         isChanneled = false,
@@ -231,7 +232,7 @@ end
 -------------------------------------------------------------------------------
 function CritCalc.BuildPeriodicResult(
     modResult, spellData, critChance, critMultiplier,
-    hitBonus, hitProbability, effectiveCastTime,
+    hitBonus, hitProbability, effectiveCastTime, rawCastTime,
     hastePercent, playerState)
     local totalDmg = modResult.totalDamage
     local tickDmg = modResult.tickDamage
@@ -287,6 +288,7 @@ function CritCalc.BuildPeriodicResult(
         expectedDamageWithMiss = expectedWithMiss,
         armorReduction = armorReduction,
         castTime = effectiveCastTime,
+        baseCastTime = rawCastTime,
         dps = dps,
         isDot = spellData.isDot or false,
         isChanneled = spellData.isChanneled or false,
@@ -301,7 +303,7 @@ end
 -------------------------------------------------------------------------------
 function CritCalc.BuildHybridResult(
     modResult, spellData, critChance, critMultiplier,
-    hitBonus, hitProbability, effectiveCastTime, playerState)
+    hitBonus, hitProbability, effectiveCastTime, rawCastTime, playerState)
     local directDmg = modResult.directDamage
     local expectedDirect = directDmg * (1 + critChance * (critMultiplier - 1))
 
@@ -349,6 +351,7 @@ function CritCalc.BuildHybridResult(
         expectedDamageWithMiss = expectedWithMiss,
         armorReduction = armorReduction,
         castTime = effectiveCastTime,
+        baseCastTime = rawCastTime,
         dps = dps,
         isDot = true,
         isChanneled = false,

@@ -16,6 +16,6 @@ ignore:
   - .release
   - "*.md"
   - "!CHANGELOG.md"
-  - release-please-config.json
-  - .release-please-manifest.json
   - .luacheckrc
+  - tests
+  - cliff.toml

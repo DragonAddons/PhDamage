@@ -23,4 +23,8 @@
     <Script file="SpellData_Rogue.lua"/>
     <Script file="TalentMap_Rogue.lua"/>
     <Script file="AuraMap_Rogue.lua"/>
+    <!-- Druid -->
+    <Script file="SpellData_Druid.lua"/>
+    <Script file="TalentMap_Druid.lua"/>
+    <Script file="AuraMap_Druid.lua"/>
 </Ui>

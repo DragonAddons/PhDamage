@@ -61,9 +61,10 @@ read_globals = {
     -- WoW API - Unit Info
     "UnitCreatureType",
     "UnitExists",
+    "UnitCanAttack",
     "UnitHealth",
     "UnitHealthMax",
-    "UnitCanAttack",
+    "UnitStat",
 
     -- WoW API - Talents
     "GetTalentInfo",

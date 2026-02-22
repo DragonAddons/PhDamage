@@ -137,7 +137,8 @@ function SpellCalc.ComputeMeleeDirect(spellData, rankData, playerState)
 
     if spellData.weaponDamage then
         -- Type 1: Weapon strike — weapon damage + normalized AP + flat bonus
-        local normalizedSpeed = ns.NORMALIZED_WEAPON_SPEED[stats.mainHandWeaponType] or 2.4
+        local normalizedSpeed = spellData.normalizedSpeed
+            or ns.NORMALIZED_WEAPON_SPEED[stats.mainHandWeaponType] or 2.4
         local weaponMin = stats.mainHandWeaponDmgMin or 0
         local weaponMax = stats.mainHandWeaponDmgMax or 0
         local apBonus = ap / 14 * normalizedSpeed
@@ -276,12 +277,14 @@ function SpellCalc.ComputeHybrid(spellData, rankData, playerState)
     end
 
     -- Direct portion
+    local directCoeff = spellData.directCoefficient or spellData.apCoefficient or 0
     local directAvg = (rankData.minDmg + rankData.maxDmg) / 2
-    local directSpBonus = scalingPower * (spellData.directCoefficient or 0)
+    local directSpBonus = scalingPower * directCoeff
     local directDamage = directAvg + directSpBonus
 
     -- DoT portion
-    local dotSpBonus = scalingPower * (spellData.dotCoefficient or 0)
+    local dotCoeff = spellData.dotCoefficient or spellData.dotApCoefficient or 0
+    local dotSpBonus = scalingPower * dotCoeff
     local dotDamage = rankData.dotDmg + dotSpBonus
     local numTicks = rankData.numTicks or spellData.numTicks
     if not numTicks or numTicks == 0 then numTicks = 1 end
@@ -294,13 +297,13 @@ function SpellCalc.ComputeHybrid(spellData, rankData, playerState)
         avgBaseDamage = directAvg,
         minBaseDamage = rankData.minDmg,
         maxBaseDamage = rankData.maxDmg,
-        directCoefficient = spellData.directCoefficient,
+        directCoefficient = directCoeff,
         directSpBonus = directSpBonus,
         directDamage = directDamage,
         directMin = rankData.minDmg + directSpBonus,
         directMax = rankData.maxDmg + directSpBonus,
         -- DoT fields
-        dotCoefficient = spellData.dotCoefficient,
+        dotCoefficient = dotCoeff,
         dotSpBonus = dotSpBonus,
         dotBaseDamage = rankData.dotDmg,
         dotDamage = dotDamage,
@@ -308,7 +311,7 @@ function SpellCalc.ComputeHybrid(spellData, rankData, playerState)
         numTicks = numTicks,
         duration = rankData.duration or spellData.duration,
         -- Combined
-        coefficient = (spellData.directCoefficient or 0) + (spellData.dotCoefficient or 0),
+        coefficient = directCoeff + dotCoeff,
         spellPowerBonus = directSpBonus + dotSpBonus,
         totalDamage = directDamage + dotDamage,
         castTime = spellData.castTime,

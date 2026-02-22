@@ -158,6 +158,11 @@ local function ApplyEffect(mods, effect, rank, playerState)
         value = value * rank
     end
 
+    -- Stat-based modifier (e.g., Lunar Guidance: +X% of INT as spell power)
+    if effect.statField then
+        value = value * (playerState and playerState.stats and playerState.stats[effect.statField] or 0)
+    end
+
     if effectType == MOD.DAMAGE_MULTIPLIER then
         if effect.stacking == "additive" then
             mods.talentDamageBonus = mods.talentDamageBonus + value

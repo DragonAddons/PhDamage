@@ -226,6 +226,14 @@ function StateCollector.CollectPlayerState()
         end
     end
 
+    -- Intellect (needed for stat-conversion talents like Lunar Guidance)
+    do
+        local ok, _, intel = pcall(UnitStat, "player", 4)
+        if ok and intel then
+            state.stats.intellect = intel
+        end
+    end
+
     ---------------------------------------------------------------------------
     -- Ranged combat stats (Hunter, etc.)
     ---------------------------------------------------------------------------

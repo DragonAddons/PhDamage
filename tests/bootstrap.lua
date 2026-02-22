@@ -52,6 +52,9 @@ LoadFile("Data/AuraMap_Warrior.lua")
 LoadFile("Data/SpellData_Rogue.lua")
 LoadFile("Data/TalentMap_Rogue.lua")
 LoadFile("Data/AuraMap_Rogue.lua")
+LoadFile("Data/SpellData_Druid.lua")
+LoadFile("Data/TalentMap_Druid.lua")
+LoadFile("Data/AuraMap_Druid.lua")
 LoadFile("Engine/SpellCalc.lua")
 LoadFile("Engine/ModifierCalc.lua")
 LoadFile("Engine/CritCalc.lua")
@@ -305,6 +308,51 @@ local function makeRogueState(overrides)
 end
 
 -------------------------------------------------------------------------------
+-- Default Druid player state for testing
+-------------------------------------------------------------------------------
+local DEFAULT_DRUID_STATE = {
+    level = 70,
+    targetLevel = 73,
+    class = "DRUID",
+    stats = {
+        spellPower = { [2] = 0, [4] = 0, [8] = 800, [16] = 0, [32] = 0, [64] = 800 },
+        healingPower = 0,
+        spellCrit = { [8] = 0.10, [64] = 0.10 },
+        spellHit = 0.03,
+        spellHaste = 0,
+        intellect = 350,
+        attackPower = 2000,
+        meleeCrit = 0.25,
+        meleeHit = 0.00,
+        meleeHaste = 0.00,
+        expertise = 0,
+        mainHandWeaponDmgMin = 100,
+        mainHandWeaponDmgMax = 150,
+        mainHandWeaponSpeed = 2.5,
+        mainHandWeaponType = "FIST",
+    },
+    talents = {},
+    auras = { player = {}, target = {} },
+    gear = { setBonuses = {} },
+    attackingFromBehind = true,
+    targetArmor = 0,
+    targetHealthPercent = 100,
+}
+
+-------------------------------------------------------------------------------
+-- Factory function: returns a fresh deep copy of the default Druid state
+-------------------------------------------------------------------------------
+local function makeDruidState(overrides)
+    local state = DeepCopy(DEFAULT_DRUID_STATE)
+    if overrides then
+        for k, v in pairs(overrides) do
+            state[k] = v
+        end
+    end
+    return state
+end
+
+-------------------------------------------------------------------------------
 -- Self-test when run directly
 -------------------------------------------------------------------------------
 local isMain = (arg and arg[0] and arg[0]:find("bootstrap"))
@@ -365,4 +413,5 @@ return {
     makePriestState = MakePriestState,
     makeWarriorState = makeWarriorState,
     makeRogueState = makeRogueState,
+    makeDruidState = makeDruidState,
 }

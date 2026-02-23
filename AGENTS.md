@@ -137,3 +137,14 @@ task(subagent_type="wowhead-researcher", prompt="Look up all ranks of Fireball f
 - **Phase 1-5**: Complete — TBC Anniversary, Warlock + Hunter + Mage, diagnostics + tooltip + action bar
 - **Phase 6** (active): Mage class support
 - **Future**: Additional classes (Priest, Shaman, Druid, Paladin), multi-version support, options panel
+
+---
+
+## CI/CD
+
+### Release Flow (release-please)
+- **release-please** creates/updates a Release PR on every push to master
+- Merging the Release PR creates a git tag + GitHub Release
+- Tag push triggers BigWigsMods/packager for CurseForge + Wago uploads
+- Config: `release-please-config.json`, manifest: `.release-please-manifest.json`
+- DO NOT manually create tags - release-please handles versioning

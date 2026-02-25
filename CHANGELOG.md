@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/Xerrion/PhDamage/compare/1.1.1...1.1.2) (2026-02-25)
+
+
+### Bug Fixes
+
+* disable toc-creation for single-interface addon ([8bc1770](https://github.com/Xerrion/PhDamage/commit/8bc1770496406623da0ab27e0f4072b2a10c2a7c))
+
 ## [1.1.1](https://github.com/Xerrion/PhDamage/compare/1.1.0...1.1.1) (2026-02-25)
 
 

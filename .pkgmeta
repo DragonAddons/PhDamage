@@ -1,5 +1,6 @@
 package-as: PhDamage
 enable-toc-creation: yes
+manual-changelog: .release/CHANGELOG.md
 
 externals:
   Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk

@@ -1,3 +1,22 @@
+# Changelog
+
+## [1.1.1](https://github.com/Xerrion/PhDamage/compare/1.1.0...1.1.1) (2026-02-25)
+
+
+### Bug Fixes
+
+* add permissions to caller workflow ([#9](https://github.com/Xerrion/PhDamage/issues/9)) ([daeb969](https://github.com/Xerrion/PhDamage/commit/daeb969f1078f702eb9c763d4338bdf00e61c128))
+
+
+### Documentation
+
+* touch up README with accurate details and consistent formatting ([#6](https://github.com/Xerrion/PhDamage/issues/6)) ([c1443ae](https://github.com/Xerrion/PhDamage/commit/c1443ae21d6cbf316b1f8bdefb7cc701ee450ef0))
+
+
+### CI/CD
+
+* add proper changelog ([ef68aaf](https://github.com/Xerrion/PhDamage/commit/ef68aaf0d7d902b7e0407b7b0725bcbbdd7c7c72))
+
 ## [1.0.0] - 2026-02-23
 
 ### 🚀 Features

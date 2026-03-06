@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/DragonAddons/PhDamage/compare/1.3.0...1.3.1) (2026-03-06)
+
+
+### Bug Fixes
+
+* stabilize local busted runs and lock Life Tap model ([#26](https://github.com/DragonAddons/PhDamage/issues/26)) ([39ce370](https://github.com/DragonAddons/PhDamage/commit/39ce370a18dabf2afadcd55db7e72a4feabe6a1f))
+
 ## [1.3.0](https://github.com/DragonAddons/PhDamage/compare/1.2.1...1.3.0) (2026-03-03)
 
 

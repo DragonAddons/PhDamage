@@ -23,6 +23,7 @@ jobs:
       GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Resolve tag
+        id: resolve_tag
         shell: bash
         run: |
           if [[ -n "${{ inputs.tag_name || '' }}" ]]; then
@@ -30,7 +31,7 @@ jobs:
           else
             TAG="${{ github.ref_name }}"
           fi
-          echo "TAG_NAME=$TAG" >> "$GITHUB_ENV"
+          echo "tag_name=$TAG" >> "$GITHUB_OUTPUT"
 
       - name: Checkout helper script source
         uses: actions/checkout@v5
@@ -49,7 +50,7 @@ jobs:
       - name: Checkout tag
         uses: actions/checkout@v5
         with:
-          ref: refs/tags/${{ env.TAG_NAME }}
+          ref: refs/tags/${{ steps.resolve_tag.outputs.tag_name }}
           fetch-depth: 0
 
       - name: Restore vendored changelog script
@@ -66,4 +67,4 @@ jobs:
       - name: Package and upload
         uses: BigWigsMods/packager@v2
         env:
-          GITHUB_REF: refs/tags/${{ env.TAG_NAME }}
+          GITHUB_REF: refs/tags/${{ steps.resolve_tag.outputs.tag_name }}

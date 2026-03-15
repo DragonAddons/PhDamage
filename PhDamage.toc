@@ -1,4 +1,4 @@
-## Interface-BCC: 20505
+## Interface: 20505
 ## Title: PhDamage
 ## Notes: Spell damage/healing computation engine
 ## Author: Torchlight

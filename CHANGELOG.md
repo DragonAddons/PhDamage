@@ -1,46 +1,46 @@
 # Changelog
 
-## [1.3.5](https://github.com/DragonAddons/PhDamage/compare/1.3.4...1.3.5) (2026-03-15)
+## [1.3.5](https://github.com/Xerrion/PhDamage/compare/1.3.4...1.3.5) (2026-03-15)
 
 
 ### Bug Fixes
 
-* correct interface again ([b1d967c](https://github.com/DragonAddons/PhDamage/commit/b1d967cf4fae74917cd662cea562ae294bbd09d9))
+* correct interface again ([b1d967c](https://github.com/Xerrion/PhDamage/commit/b1d967cf4fae74917cd662cea562ae294bbd09d9))
 
-## [1.3.4](https://github.com/DragonAddons/PhDamage/compare/1.3.3...1.3.4) (2026-03-15)
-
-
-### Bug Fixes
-
-* correct interface version ([51d70ae](https://github.com/DragonAddons/PhDamage/commit/51d70ae0bad4165dfd5570265614457d6c8a0fc7))
-
-## [1.3.3](https://github.com/DragonAddons/PhDamage/compare/1.3.2...1.3.3) (2026-03-15)
+## [1.3.4](https://github.com/Xerrion/PhDamage/compare/1.3.3...1.3.4) (2026-03-15)
 
 
 ### Bug Fixes
 
-* inline shared release automation ([#30](https://github.com/DragonAddons/PhDamage/issues/30)) ([4347e93](https://github.com/DragonAddons/PhDamage/commit/4347e93fb050fc788d6bd54167a8a72000be8046))
+* correct interface version ([51d70ae](https://github.com/Xerrion/PhDamage/commit/51d70ae0bad4165dfd5570265614457d6c8a0fc7))
 
-## [1.3.2](https://github.com/DragonAddons/PhDamage/compare/1.3.1...1.3.2) (2026-03-14)
-
-
-### Bug Fixes
-
-* standardize Ace3 embedded packaging paths ([#28](https://github.com/DragonAddons/PhDamage/issues/28)) ([ad3fff8](https://github.com/DragonAddons/PhDamage/commit/ad3fff83b739d062a70ff4ebfce3412bcb965917))
-
-## [1.3.1](https://github.com/DragonAddons/PhDamage/compare/1.3.0...1.3.1) (2026-03-06)
+## [1.3.3](https://github.com/Xerrion/PhDamage/compare/1.3.2...1.3.3) (2026-03-15)
 
 
 ### Bug Fixes
 
-* stabilize local busted runs and lock Life Tap model ([#26](https://github.com/DragonAddons/PhDamage/issues/26)) ([39ce370](https://github.com/DragonAddons/PhDamage/commit/39ce370a18dabf2afadcd55db7e72a4feabe6a1f))
+* inline shared release automation ([#30](https://github.com/Xerrion/PhDamage/issues/30)) ([4347e93](https://github.com/Xerrion/PhDamage/commit/4347e93fb050fc788d6bd54167a8a72000be8046))
 
-## [1.3.0](https://github.com/DragonAddons/PhDamage/compare/1.2.1...1.3.0) (2026-03-03)
+## [1.3.2](https://github.com/Xerrion/PhDamage/compare/1.3.1...1.3.2) (2026-03-14)
+
+
+### Bug Fixes
+
+* standardize Ace3 embedded packaging paths ([#28](https://github.com/Xerrion/PhDamage/issues/28)) ([ad3fff8](https://github.com/Xerrion/PhDamage/commit/ad3fff83b739d062a70ff4ebfce3412bcb965917))
+
+## [1.3.1](https://github.com/Xerrion/PhDamage/compare/1.3.0...1.3.1) (2026-03-06)
+
+
+### Bug Fixes
+
+* stabilize local busted runs and lock Life Tap model ([#26](https://github.com/Xerrion/PhDamage/issues/26)) ([39ce370](https://github.com/Xerrion/PhDamage/commit/39ce370a18dabf2afadcd55db7e72a4feabe6a1f))
+
+## [1.3.0](https://github.com/Xerrion/PhDamage/compare/1.2.1...1.3.0) (2026-03-03)
 
 
 ### Features
 
-* support spell links in /phd spell command ([#23](https://github.com/DragonAddons/PhDamage/issues/23)) ([#24](https://github.com/DragonAddons/PhDamage/issues/24)) ([7abd5d0](https://github.com/DragonAddons/PhDamage/commit/7abd5d06ddcd511331488e1b10134d55e01e83e1))
+* support spell links in /phd spell command ([#23](https://github.com/Xerrion/PhDamage/issues/23)) ([#24](https://github.com/Xerrion/PhDamage/issues/24)) ([7abd5d0](https://github.com/Xerrion/PhDamage/commit/7abd5d06ddcd511331488e1b10134d55e01e83e1))
 
 ## [1.2.1](https://github.com/Xerrion/PhDamage/compare/1.2.0...1.2.1) (2026-03-01)
 

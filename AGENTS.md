@@ -293,9 +293,6 @@ Always use `--no-gpg-sign` (GPG signing not available in CI agent environments).
 4. Squash merge only: `gh pr merge <number> --squash`
 5. Branches are auto-deleted after merge
 
-### Project Boards
-
-PhDamage uses the **DragonAddons** org-level GitHub project board (#2) for issue tracking and sprint planning.
 
 #### Board Columns
 

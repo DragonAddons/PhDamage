@@ -2,69 +2,13 @@ name: Release
 
 on:
   push:
-    tags: ["*"]
-  workflow_dispatch:
-    inputs:
-      tag_name:
-        description: "Tag to package (e.g. 1.4.3)"
-        required: true
-        type: string
+    branches: [master]
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release:
-    name: Package and Upload
-    runs-on: ubuntu-latest
-    env:
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-      GITHUB_OAUTH: ${{ github.token }}
-    steps:
-      - name: Resolve tag
-        id: resolve_tag
-        shell: bash
-        run: |
-          if [[ -n "${{ inputs.tag_name || '' }}" ]]; then
-            TAG="${{ inputs.tag_name }}"
-          else
-            TAG="${{ github.ref_name }}"
-          fi
-          echo "tag_name=$TAG" >> "$GITHUB_OUTPUT"
-
-      - name: Checkout helper script source
-        uses: actions/checkout@v6
-        with:
-          ref: refs/heads/master
-          fetch-depth: 1
-          path: .workflow-source
-
-      - name: Snapshot vendored changelog script
-        shell: bash
-        run: |
-          mkdir -p "$RUNNER_TEMP/phdamage-release-scripts"
-          cp .workflow-source/scripts/generate_changelog.sh "$RUNNER_TEMP/phdamage-release-scripts/generate_changelog.sh"
-          chmod +x "$RUNNER_TEMP/phdamage-release-scripts/generate_changelog.sh"
-
-      - name: Checkout tag
-        uses: actions/checkout@v6
-        with:
-          ref: refs/tags/${{ steps.resolve_tag.outputs.tag_name }}
-          fetch-depth: 0
-
-      - name: Restore vendored changelog script
-        shell: bash
-        run: |
-          mkdir -p scripts
-          cp "$RUNNER_TEMP/phdamage-release-scripts/generate_changelog.sh" scripts/generate_changelog.sh
-          chmod +x scripts/generate_changelog.sh
-
-      - name: Generate changelog
-        shell: bash
-        run: bash scripts/generate_changelog.sh
-
-      - name: Package and upload
-        uses: BigWigsMods/packager@v2
-        env:
-          GITHUB_REF: refs/tags/${{ steps.resolve_tag.outputs.tag_name }}
+    uses: Xerrion/wow-workflows/.github/workflows/release.yml@main
+    secrets: inherit
